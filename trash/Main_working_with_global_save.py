@@ -4,6 +4,8 @@ import tkinter as tk
 from tkcalendar import Calendar  # Import from tkcalendar
 from datetime import datetime  # Import datetime for day of the week
 
+# import prediction
+
 
 def load_asset(path):
     base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
@@ -254,7 +256,7 @@ textarea_3 = tk.Text(
     font=("Montserrat", 12),
 )
 
-textarea_3.place(x=427, y=736, width=834, height=263)
+# textarea_3.place(x=427, y=736, width=834, height=263)
 
 # Initialize textarea_4 as a global variable
 textarea_4 = tk.Text(
