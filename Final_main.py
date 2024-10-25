@@ -12,6 +12,9 @@ selected_hour = ""
 selected_minute = ""
 selected_period = ""
 textarea_4 = None
+image_3_id = None
+image_4_id = None
+image_5_id = None
 
 
 def load_asset(path):
@@ -104,12 +107,15 @@ def convert_to_24_hour(hour, period):
 # Function to handle prediction
 def handle_prediction():
     global day_of_week, selected_hour, selected_minute, selected_period
+    global image_3_id, image_4_id, image_5_id
 
     # Convert the selected hour to 24-hour format
+
     hour_24 = convert_to_24_hour(selected_hour, selected_period)
 
     # Call the prediction function from prediction.py
     try:
+
         prediction = predict_density(day_of_week, hour_24, int(selected_minute))
         print(
             f"Prediction: Left Density = {prediction[0]}, Right Density = {prediction[1]}"
@@ -125,13 +131,24 @@ def handle_prediction():
         left_density, right_density = prediction[0], prediction[1]
         average_density = (left_density + right_density) / 2
 
+        if image_3_id:
+            canvas.delete(image_3_id)
+        if image_4_id:
+            canvas.delete(image_4_id)
+        if image_5_id:
+            canvas.delete(image_5_id)
+
         # Determine traffic condition based on the average density
         if 0 <= average_density <= 15:
             traffic_condition = "Light Traffic"
+            image_3_id = canvas.create_image(879, 782, image=image_3)
+
         elif 15 <= average_density <= 30:
             traffic_condition = "Moderate Traffic"
+            image_4_id = canvas.create_image(879, 782, image=image_4)
         else:
             traffic_condition = "Heavy Traffic"
+            image_5_id = canvas.create_image(879, 782, image=image_5)
 
         print(f"Traffic Condition: {traffic_condition}")
         textarea_2.delete(1.0, tk.END)
@@ -256,6 +273,21 @@ textarea_3 = tk.Text(
 )
 
 # textarea_3.place(x=427, y=736, width=834, height=263)  # statistical
+image_2 = tk.PhotoImage(file=load_asset("7.png"))  # map
+
+canvas.create_image(890, 748, image=image_2)
+
+image_3 = tk.PhotoImage(file=load_asset("8.png"))  # green
+
+# canvas.create_image(879, 782, image=image_3)
+
+image_4 = tk.PhotoImage(file=load_asset("9.png"))  # yellow
+
+# canvas.create_image(879, 782, image=image_4)
+
+image_5 = tk.PhotoImage(file=load_asset("10.png"))  # red
+
+# canvas.create_image(879, 782, image=image_5)
 
 window.resizable(False, False)
 window.mainloop()

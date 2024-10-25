@@ -256,7 +256,7 @@ textarea_3 = tk.Text(
     font=("Montserrat", 12),
 )
 
-# textarea_3.place(x=427, y=736, width=834, height=263)
+textarea_3.place(x=427, y=736, width=834, height=263)
 
 # Initialize textarea_4 as a global variable
 textarea_4 = tk.Text(
