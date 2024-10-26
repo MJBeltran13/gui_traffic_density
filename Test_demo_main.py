@@ -139,11 +139,11 @@ def handle_prediction():
             canvas.delete(image_5_id)
 
         # Determine traffic condition based on the average density
-        if 0 <= average_density <= 15:
+        if 0 <= average_density <= 6:
             traffic_condition = "Light Traffic"
             image_3_id = canvas.create_image(879, 782, image=image_3)
 
-        elif 15 <= average_density <= 30:
+        elif 7 <= average_density <= 10:
             traffic_condition = "Moderate Traffic"
             image_4_id = canvas.create_image(879, 782, image=image_4)
         else:

@@ -128,19 +128,19 @@ textarea_4 = tk.Text(
 
 textarea_4.place(x=943, y=114, width=332, height=73)
 
-image_2 = tk.PhotoImage(file=load_asset("7.png"))
+image_2 = tk.PhotoImage(file=load_asset("7.png")) #map
 
 canvas.create_image(890, 748, image=image_2)
 
-image_3 = tk.PhotoImage(file=load_asset("8.png"))
+image_3 = tk.PhotoImage(file=load_asset("8.png")) #green
 
 canvas.create_image(879, 782, image=image_3)
 
-image_4 = tk.PhotoImage(file=load_asset("9.png"))
+image_4 = tk.PhotoImage(file=load_asset("9.png")) #yellow
 
 canvas.create_image(879, 782, image=image_4)
 
-image_5 = tk.PhotoImage(file=load_asset("10.png"))
+image_5 = tk.PhotoImage(file=load_asset("10.png")) #red
 
 canvas.create_image(879, 782, image=image_5)
 
