@@ -104,6 +104,35 @@ def convert_to_24_hour(hour, period):
     return hour
 
 
+def reset():
+    global selected_date, day_of_week, selected_hour, selected_minute, selected_period
+    global image_3_id, image_4_id, image_5_id
+
+    # Reset variables
+    selected_date = ""
+    day_of_week = ""
+    selected_hour = ""
+    selected_minute = ""
+    selected_period = ""
+
+    # Clear text areas
+    textarea_4.delete(1.0, tk.END)
+    textarea_5.delete(1.0, tk.END)
+    textarea_1.delete(1.0, tk.END)
+    textarea_2.delete(1.0, tk.END)
+
+    # Remove traffic condition images from the canvas if they exist
+    if image_3_id:
+        canvas.delete(image_3_id)
+        image_3_id = None
+    if image_4_id:
+        canvas.delete(image_4_id)
+        image_4_id = None
+    if image_5_id:
+        canvas.delete(image_5_id)
+        image_5_id = None
+
+
 # Function to handle prediction
 def handle_prediction():
     global day_of_week, selected_hour, selected_minute, selected_period
@@ -207,6 +236,21 @@ button_2 = tk.Button(
     command=open_calendar,
 )
 button_2.place(x=15, y=170, width=300, height=105)
+
+button_reset = tk.PhotoImage(file=load_asset("reset.png"))
+
+button_4_reset = tk.Button(
+    image=button_reset,
+    relief="flat",
+    borderwidth=0,
+    highlightthickness=0,
+    bg="#2E2E2E",
+    activebackground="#2E2E2E",
+    command=reset,
+)
+
+button_4_reset.place(x=27, y=617, width=103, height=95)
+
 
 button_3_image = tk.PhotoImage(file=load_asset("4.png"))
 button_3 = tk.Button(

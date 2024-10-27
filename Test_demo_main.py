@@ -94,6 +94,35 @@ def open_time_selection():
     tk.Button(time_window, text="Select Time", command=grab_time).pack(pady=20)
 
 
+def reset():
+    global selected_date, day_of_week, selected_hour, selected_minute, selected_period
+    global image_3_id, image_4_id, image_5_id
+
+    # Reset variables
+    selected_date = ""
+    day_of_week = ""
+    selected_hour = ""
+    selected_minute = ""
+    selected_period = ""
+
+    # Clear text areas
+    textarea_4.delete(1.0, tk.END)
+    textarea_5.delete(1.0, tk.END)
+    textarea_1.delete(1.0, tk.END)
+    textarea_2.delete(1.0, tk.END)
+
+    # Remove traffic condition images from the canvas if they exist
+    if image_3_id:
+        canvas.delete(image_3_id)
+        image_3_id = None
+    if image_4_id:
+        canvas.delete(image_4_id)
+        image_4_id = None
+    if image_5_id:
+        canvas.delete(image_5_id)
+        image_5_id = None
+
+
 # Function to convert the 12-hour format to 24-hour format
 def convert_to_24_hour(hour, period):
     hour = int(hour)
@@ -219,6 +248,20 @@ button_3 = tk.Button(
     command=open_time_selection,
 )
 button_3.place(x=15, y=319, width=300, height=105)
+
+button_reset = tk.PhotoImage(file=load_asset("reset.png"))
+
+button_4_reset = tk.Button(
+    image=button_reset,
+    relief="flat",
+    borderwidth=0,
+    highlightthickness=0,
+    bg="#2E2E2E",
+    activebackground="#2E2E2E",
+    command=reset,
+)
+
+button_4_reset.place(x=27, y=617, width=103, height=95)
 
 # Create text areas
 textarea_4 = tk.Text(
